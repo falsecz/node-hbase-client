@@ -13,14 +13,7 @@
 var config = {
   zookeeper: {
     quorum: "10.64.12.228"
-  },
-  zookeeperHosts: [
-    '10.232.98.74',
-    '10.232.98.75', '10.232.98.76',
-    '10.232.98.77', '10.232.98.78'
-  ],
-  zookeeperRoot: '/hbase-rd-test-0.94',
-  // logger: console,
+  },  // logger: console,
   logger: {
     warn: function () {},
     info: function () {},
