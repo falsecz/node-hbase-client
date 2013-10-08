@@ -11,6 +11,9 @@
  */
 
 var config = {
+  zookeeper: {
+    quorum: "10.64.12.228"
+  },
   zookeeperHosts: [
     '10.232.98.74',
     '10.232.98.75', '10.232.98.76',

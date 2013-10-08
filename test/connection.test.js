@@ -136,7 +136,7 @@ describe('test/connection.test.js', function () {
         if (value !== null) {
           hostAndPort = Bytes.toString(value);
         }
-        hostAndPort.should.match(/^[\w\.]+\:\d+$/);
+        hostAndPort.should.match(/^[\w\.\d-]+\:\d+$/);
 
         // Instantiate the location
         var item = hostAndPort.split(':');
@@ -151,7 +151,7 @@ describe('test/connection.test.js', function () {
 
   describe('mock network error', function () {
 
-    var proxy = interceptor.create('dw48.kgb.sqa.cm4:36020', 100);
+    var proxy = interceptor.create('hadoops1.us-w2.aws.ccl:60020', 100);
     var conn = null;
     var port = 36021;
     beforeEach(function (done) {
@@ -176,6 +176,7 @@ describe('test/connection.test.js', function () {
 
     it('should return protocol version', function (done) {
       conn.getProtocolVersion(null, null, function (err, version) {
+		  console.log(err);
         should.not.exists(err);
         version.should.be.an.instanceof(Long);
         version.toNumber().should.equal(29);
