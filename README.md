@@ -41,7 +41,9 @@ param.addColumn('f1', 'name');
 param.addColumn('f1', 'age');
 
 client.get('user', param, function (err, result) {
-  console.log(err);
+  if (err) {
+    console.log(err);
+  }
   var kvs = result.raw();
   for (var i = 0; i < kvs.length; i++) {
     var kv = kvs[i];
@@ -74,7 +76,7 @@ var put = new HBase.Put('foo');
 put.add('f1', 'name', 'foo');
 put.add('f1', 'age', '18');
 client.put('user', put, function (err) {
-  console.log(err);
+  should.not.exist(err);
 });
 ```
 
@@ -82,7 +84,7 @@ client.put('user', put, function (err) {
 
 ```js
 client.putRow(table, row, {'f1:name': 'foo name', 'f1:age': '18'}, function (err) {
-  should.not.exists(err);
+  should.not.exist(err);
 });
 ```
 
@@ -90,25 +92,25 @@ client.putRow(table, row, {'f1:name': 'foo name', 'f1:age': '18'}, function (err
 
 ```
 client.deleteRow(tableName, rowkey, function (err) {
-  //TODO:...
-});
-
-var del = new Delete(rowkey);
-del.deleteColumns('f', 'name-t');
-client.delete(table, del, function (err, result) {
-  //TODO:...
+  should.not.exist(err);
 });
 
 var del = new Delete(rowkey);
 del.deleteColumn('f', 'name-t');
 client.delete(table, del, function (err, result) {
-  //TODO:...
+  should.not.exist(err);
+});
+
+var del = new Delete(rowkey);
+del.deleteColumns('f', 'name-t');
+client.delete(table, del, function (err, result) {
+  should.not.exist(err);
 });
 
 var del = new Delete(rowkey);
 del.deleteFamily('f');
 client.delete(table, del, function (err, result) {
-  //TODO:...
+  should.not.exist(err);
 });
 
 ```
@@ -120,17 +122,35 @@ client.delete(table, del, function (err, result) {
 var rows = ['row1', 'row2'];
 var columns = ['f:col1', 'f:col2'];
 client.mget(tableName, rows, columns, function (err, results){
-  //TODO:...
+  if (err) {
+    console.log(err);
+  }
+  for (var i = 0; i < results.length; i++) {
+    console.log(row.getValue('f', 'col1').toString());
+    console.log(row.getValue('f', 'col2').toString());
+  }
 });
 
-var rows = [{row: 'rowkey1', 'f:col1': 'col_value'}, {row: 'rowkey2', 'f:col1': 'col_value'}];
+var rows = [
+  {row: 'rowkey1', 'f:col1': 'col_value'},
+  {row: 'rowkey2', 'f:col1': 'col_value', 'ts': 'timestamp in ms'}
+];
 client.mput(tableName, rows, function (err, results) {
-  //TODO:...
+  if (err) {
+    console.log(err);
+  }
+  for (var i = 0; i < results.length; i++) {
+    if (results[i].name) {
+      console.log("Caught an exception: " + results[i].name);
+    }
+  }
 });
 
 var rows = ['row1', 'row2'];
 client.mdelete(tableName, rows, function (err, results) {
-  //TODO:...
+  if (err) {
+    console.log(err);
+  }
 });
 
 ```
