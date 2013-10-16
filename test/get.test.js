@@ -23,7 +23,6 @@ describe('test/get.test.js', function () {
     // family, qualifier, row, maxVersions
     ['f', 'history', '0f48MDAwMDAwMDAwMDAwMDAwMA==', 1],
     ['f', 'history', '2dbbMDAwMDAwMDAwMDAwMTAwMA==', 50],
-    ['f', 'history', '中文rowkey', 100],
   ];
 
   describe('write()', function () {

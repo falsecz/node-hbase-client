@@ -29,7 +29,6 @@ describe('test/put.test.js', function () {
         ['1', 'f', 'q', '1'],
         ['r', 'f', 'q', '1'],
         ['58c8MDAwMDAwMDAwMDAwMDAwMQ==', 'f', 'q', '1'],
-        ['58c8MDAwMDAwMDAwMDAwMDAwMQ==', 'f', 'history', '58c8MDAwMDAwMDAwMDAwMDAwMQ==这是值啊!'],
       ];
       items.forEach(function (item) {
         var r = item[0];
