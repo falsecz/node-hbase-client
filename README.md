@@ -13,6 +13,7 @@ Asynchronous HBase client for nodejs, pure javascript implementation.
 
 * [x] 0.94.0
 * [ ] 0.94.8
+* [x] 0.94.12
 * [ ] 0.95.0
 
 ## Install
